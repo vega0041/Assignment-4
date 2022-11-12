@@ -134,6 +134,11 @@ export class DanceApp extends gfx.GfxApp
 
         // Add the first ballet dance motion
         this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/05_02.amc'));
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/05_07.amc'))
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/05_06.amc'))
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/05_01.amc'))
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/05_03.amc'))
+
         
         
         // TO DO (PART 4): Add special motions 2-5 on your own.
@@ -168,6 +173,17 @@ export class DanceApp extends gfx.GfxApp
         // TO DO (PART 4): You will need to trim the new animations you have
         // added to isolate the interesting portions of the motion.  You can
         // then add them similarly to the first ballet dance motion.
+        this.balletDanceMotions[1].trimFront(200)
+        this.balletDanceMotions[1].trimBack(200);
+
+        this.balletDanceMotions[2].trimFront(250)
+        this.balletDanceMotions[2].trimBack(200);
+
+        this.balletDanceMotions[3].trimFront(200)
+        this.balletDanceMotions[3].trimBack(200);
+
+//        this.balletDanceMotions[4].trimFront(200)
+
         
 
         this.salsaAntLead.createMeshes();
@@ -244,22 +260,25 @@ export class DanceApp extends gfx.GfxApp
 
     playBalletMotion2(): void
     {
-        // TO DO (PART 4): Overlay the motion, similar to the call above
+        this.balletAnt.overlay(this.balletDanceMotions[1], 100)
     }
 
     playBalletMotion3(): void
     {
         // TO DO (PART 4): Overlay the motion, similar to the call above
+        this.balletAnt.overlay(this.balletDanceMotions[2], 100)
     }
 
     playBalletMotion4(): void
     {
         // TO DO (PART 4): Overlay the motion, similar to the call above
+        this.balletAnt.overlay(this.balletDanceMotions[3], 100)
     }
 
     playBalletMotion5(): void
     {
         // TO DO (PART 4): Overlay the motion, similar to the call above
+        this.balletAnt.overlay(this.balletDanceMotions[4], 100)
     }
 
 }

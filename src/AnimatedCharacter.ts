@@ -67,6 +67,8 @@ export class AnimatedCharacter extends gfx.Transform3
     private createMeshesRecursive(bone: Bone): void
     {
         // TO DO (PART 1): Draw the coordinate axes for the bone
+        const axes = new gfx.Axes3(0.15)
+        bone.transform.add(axes);
 
 
         // TO DO (PART 3): You will want to draw something different for each
@@ -74,15 +76,150 @@ export class AnimatedCharacter extends gfx.Transform3
         // to do that.  You can find the names of additional bones in 
         // the .asf files.  Anything that you create will be automatically
         // be made invisible when the coordinate axes are visibile.
-        // if(bone.name == 'head')
-        // {
-        // }
-        // else if(bone.name == 'upperback')
-        // {
-        // }
+        if(bone.name == 'head'){
+            const head = new gfx.SphereMesh(1.3* bone.length, .1);
+            head.translateY(bone.length/2.2)
+            bone.transform.add(head);
+        }
 
+        else if(bone.name == 'upperneck'){
+            const upperneck = new gfx.SphereMesh(.04, .1)
+            upperneck.translateY(bone.length/2);
+            bone.transform.add(upperneck);
+        }
+        else if(bone.name == 'lowerneck'){
+            const lowerneck = new gfx.BoxMesh(.04, 2 * bone.length, .04)
+            lowerneck.translateY(bone.length/2);
+            lowerneck.translateZ(.04)
+            bone.transform.add(lowerneck);
+        }
+        
+        else if(bone.name == 'thorax'){
+            const thorax = new gfx.BoxMesh(.4, .05, .05)
+            bone.transform.add(thorax);
+        }
+        else if(bone.name == 'upperback'){
+            const upperback = new gfx.BoxMesh(.4, .05, .05)
+            const spine = new gfx.BoxMesh(.05, .3, .05)
+            bone.transform.add(upperback);
+            bone.transform.add(spine)
+        }
+        else if(bone.name == 'lowerback'){
+            const lowerback = new gfx.BoxMesh(.4, .05, .05)
+            const tailbone = new gfx.BoxMesh(.04, .3, .04)
+            tailbone.translateY(-.1)
+            bone.transform.add(lowerback);
+            bone.transform.add(tailbone)
+        }
+
+
+        else if(bone.name == 'lclavicle'){  
+            const lclavicle = new gfx.BoxMesh(bone.length, .05, .05)
+            lclavicle.rotateZ(-Math.PI/10)
+            lclavicle.translateX(-bone.length/2)
+//            lclavicle.translateY(bone.length/2);
+            bone.transform.add(lclavicle);
+        }
+        else if(bone.name == 'rclavicle'){
+            const rclavicle = new gfx.BoxMesh(bone.length, .05, .05)
+            rclavicle.rotateZ(Math.PI/10)
+            rclavicle.translateX(bone.length/2)
+
+            bone.transform.add(rclavicle);
+        }
+        else if(bone.name == 'lhumerus'){
+            const lhumerus = new gfx.BoxMesh(bone.length, .06, .06)
+            lhumerus.translateX(-bone.length/2)
+            bone.transform.add(lhumerus);
+        }
+        else if(bone.name == 'rhumerus'){
+            const rhumerus = new gfx.BoxMesh(bone.length, .06, .06)
+            rhumerus.translateX(bone.length/2)
+            bone.transform.add(rhumerus);
+        }
+        else if(bone.name == 'lradius'){
+            const lradius = new gfx.BoxMesh(bone.length*1.5 + .025, .05, .05)
+            lradius.translateX(-bone.length/2 + .05)
+            bone.transform.add(lradius);
+        }
+        else if(bone.name == 'rradius'){
+            const rradius = new gfx.BoxMesh(bone.length*1.5 +.025, .05, .05)
+            rradius.translateX(bone.length/2.6 -.03)
+            bone.transform.add(rradius);
+        }
+        else if(bone.name == 'rhand'){
+            const rhand = new gfx.BoxMesh(bone.length*2, .07, .03)
+            rhand.translateX(-bone.length/2.6)
+            bone.transform.add(rhand);
+        }
+        else if(bone.name == 'lhand'){
+            const lhand = new gfx.BoxMesh(bone.length*2, .07, .03)
+            lhand.translateX(bone.length/2.6)
+            bone.transform.add(lhand);
+        }
+
+        
+
+
+        else if(bone.name == 'lhipjoint'){
+            const lhipjoint = new gfx.SphereMesh(bone.length, 1)
+            lhipjoint.scale.set(1, 1, .5)
+            lhipjoint.rotateY(-Math.PI/3.8)
+            lhipjoint.translateX(bone.length/3);
+            bone.transform.add(lhipjoint);
+        }
+        else if(bone.name == 'rhipjoint'){
+            const rhipjoint = new gfx.SphereMesh(bone.length, 1)
+            rhipjoint.scale.set(1, 1, .5)
+            rhipjoint.rotateY(Math.PI/3.8)
+            rhipjoint.translateX(- bone.length/3);
+            bone.transform.add(rhipjoint);
+        }
+
+        else if(bone.name == 'lfemur'){
+            const lfemur = new gfx.BoxMesh(.08, bone.length, .08)
+            lfemur.rotateZ(.2)
+            lfemur.translateY(bone.length/2);
+            bone.transform.add(lfemur);
+        }
+        else if(bone.name == 'rfemur'){
+            const rfemur = new gfx.BoxMesh(.08, bone.length, .08)
+            rfemur.translateY(bone.length/2);
+            rfemur.rotateZ(-.2)
+            bone.transform.add(rfemur);
+        }
+
+        else if(bone.name == 'rtibia'){
+            const rtibia = new gfx.BoxMesh(.06, bone.length, .06)
+            rtibia.translateX(.1)
+            rtibia.translateY(bone.length/2);
+            bone.transform.add(rtibia);
+        }
+        else if(bone.name == 'ltibia'){
+            const ltibia = new gfx.BoxMesh(.06, bone.length, .06)
+            ltibia.translateX(-.1)
+            ltibia.translateY(bone.length/2);
+            bone.transform.add(ltibia);
+        }
+        else if(bone.name == 'lfoot'){
+            const lfoot = new gfx.BoxMesh(.06, .06, bone.length)
+            lfoot.translateX(-.1)
+            lfoot.translateY(bone.length-.04);
+            lfoot.translateZ(-.02)
+            bone.transform.add(lfoot);
+        }
+        else if(bone.name == 'rfoot'){
+            const rfoot = new gfx.BoxMesh(.06, .06, bone.length)
+            rfoot.translateX(.1)
+            rfoot.translateY(bone.length-.04);
+            rfoot.translateZ(-.02)
+            bone.transform.add(rfoot);
+        }
 
         // TO DO (PART 1): Recursively call this function for each of the bone's children
+        bone.children.forEach((subBone: Bone) => {
+            this.createMeshesRecursive(subBone);
+        });
     }
 
     loadSkeleton(filename: string): void
