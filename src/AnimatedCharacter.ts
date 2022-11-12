@@ -151,7 +151,7 @@ export class AnimatedCharacter extends gfx.Transform3
             const rhand = new gfx.BoxMesh(bone.length*2, .07, .03)
             rhand.translateX(-bone.length/2.6)
             bone.transform.add(rhand);
-        }
+        }//
         else if(bone.name == 'lhand'){
             const lhand = new gfx.BoxMesh(bone.length*2, .07, .03)
             lhand.translateX(bone.length/2.6)
