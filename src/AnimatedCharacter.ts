@@ -124,7 +124,7 @@ export class AnimatedCharacter extends gfx.Transform3
             const rclavicle = new gfx.BoxMesh(bone.length, .05, .05)
             rclavicle.rotateZ(Math.PI/10)
             rclavicle.translateX(bone.length/2)
-
+//
             bone.transform.add(rclavicle);
         }
         else if(bone.name == 'lhumerus'){
