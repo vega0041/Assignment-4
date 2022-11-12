@@ -122,7 +122,7 @@ export class DanceApp extends gfx.GfxApp
     }
 
     loadAnimations(): void
-    {
+    {//
         this.state = AppState.LOADING_ANIMATIONS;
 
         // Add the salsa dance motions
